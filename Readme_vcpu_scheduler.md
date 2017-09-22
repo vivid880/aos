@@ -5,9 +5,11 @@ This is **Wei Le** Readme file.
 ## Compile and Run
 
 - Compile
+
 	make clean; make
 
 - Run
+
 	./VCPU_scheduler 2
 
 
@@ -15,7 +17,7 @@ This is **Wei Le** Readme file.
 
 - First, connect to the Hypervisor using virConnectOpen() API,  and URI of the hypervisor is "qemu:///system";
 - Get the number of PCPU using virNodeGetCPUMap() API;
-- Get the list of active running VMs on the host, conduct primary operations in a while loop when the number of runnign VMs is larger than 0, the program sleeps for 2s at the end of each while loop to get VCPU time which has increased much enough to calculate VCPU usage;
+- Get the list of active running VMs on the host, conduct primary operations in a while loop when the number of runnign VMs is larger than 0, the program sleeps for 2s at the end of each while loop to get VCPU time which has increased much enough for calculating VCPU usage;
 - Inside each while loop, get the domain information for all running domains using virDomainListGetStats(). Loop over each domain information, retrieve the information for VCPU time from domain information, save VCPU time and domain information into a struct DomainStats object;
 - memcpy the struct DomainStats object for each domain to an old_domain_stats object as a comparison base for the next loop;
 - If it's the first round of while loop, do nothing else. If it's not the first round, compare the current struct DomainStats object and old/previous struct DomainStats object for each domain, get the VCPU usage during each sleep time for each domain and save it to struct DomainStats object;
